@@ -44,6 +44,7 @@ int fputc(int ch, FILE *f)
 }
 
 /***PWM Õ¼¿Õ±È***/
+#if TIM_IT4||TIM_IT3||TIM_IT2||TIM_IT1
 void PwmChangeDuty(TIM_HandleTypeDef *htim, uint32_t Channel, uint32_t Duty)
 {
 	switch (Channel)
@@ -55,3 +56,4 @@ void PwmChangeDuty(TIM_HandleTypeDef *htim, uint32_t Channel, uint32_t Duty)
 		default:break;
 	}
 }
+#endif

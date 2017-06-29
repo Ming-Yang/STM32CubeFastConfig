@@ -2,13 +2,22 @@
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __userinc_H
 #define __userinc_H
+#include <usercfg.h>
 
-
+#if USR_STM32F1
 /* System Includes ------------------------------------------------------------------*/
 #include "stm32f1xx.h"
-/* 此处加入main.c里CubeMX生成代码包含的头文件*/
 #include "stm32f1xx_hal.h"
+#endif
 
+#if USR_STM32F4
+/* System Includes ------------------------------------------------------------------*/
+#include "stm32f4xx.h"
+#include "stm32f4xx_hal.h"
+#endif
+
+
+/* 此处加入main.c里CubeMX生成代码包含的头文件*/
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -113,8 +122,9 @@ typedef __I uint8_t vuc8;   /*!< Read Only */
 
 /***用户函数声明***/
 extern void systick_delayus(int delay_us);
+#if TIM_IT4||TIM_IT3||TIM_IT2||TIM_IT1
 extern void PwmChangeDuty(TIM_HandleTypeDef *htim, uint32_t Channel, uint32_t Duty);
-
+#endif
 
 #define delay_ms(a) HAL_Delay(a)
 #define delay_us(a) systick_delayus(a)
